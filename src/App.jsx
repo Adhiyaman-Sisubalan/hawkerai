@@ -78,12 +78,12 @@ export default function App() {
           <p className="text-xs text-gray-400">
             Open source —{' '}
             <a
-              href="https://github.com/YOUR_USERNAME/hawkerai"
+              href="https://github.com/Adhiyaman-Sisubalan/hawkerai"
               target="_blank"
               rel="noopener noreferrer"
               className="underline underline-offset-2 hover:text-amber-500 transition-colors"
             >
-              github.com/YOUR_USERNAME/hawkerai
+              github.com/Adhiyaman-Sisubalan/hawkerai
             </a>
           </p>
           <p className="text-xs text-gray-300 pt-1">
