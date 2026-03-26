@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+/* HawkerAI global token overrides */
+@theme {
+  --color-hawker-bg: #fdfaf4;
+  --font-sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  background-color: #fdfaf4;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Smooth message fade for LoadingState */
+@keyframes fadeSwap {
+  0%   { opacity: 0; transform: translateY(6px); }
+  15%  { opacity: 1; transform: translateY(0); }
+  85%  { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-6px); }
+}
+.msg-fade {
+  animation: fadeSwap 800ms ease-in-out;
+}
