@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import html2canvas from 'html2canvas'
 
-const SITE_URL = 'https://hawkerai.sg'
+const SITE_URL = 'https://hawkerai-eight.vercel.app'
 
 export default function ShareCard({ targetRef, dishName }) {
   const [saving, setSaving] = useState(false)
@@ -49,7 +49,7 @@ export default function ShareCard({ targetRef, dishName }) {
       ctx.fillStyle = 'rgba(255,255,255,0.75)'
       ctx.textBaseline = 'middle'
       ctx.textAlign = 'left'
-      ctx.fillText('hawkerai.sg', pillPX, pillY + pillH / 2)
+      ctx.fillText('hawkerai-eight.vercel.app', pillPX, pillY + pillH / 2)
 
       // Right watermark — brand
       ctx.textAlign = 'right'

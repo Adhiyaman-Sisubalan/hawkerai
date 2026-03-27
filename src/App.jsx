@@ -89,10 +89,10 @@ export default function App() {
           <p className="text-xs text-gray-300 pt-1">
             Built with ♥ ·{' '}
             <a
-              href="https://hawkerai.sg"
+              href="https://hawkerai-eight.vercel.app"
               className="hover:text-amber-400 transition-colors"
             >
-              hawkerai.sg
+              hawkerai-eight.vercel.app
             </a>
           </p>
         </div>

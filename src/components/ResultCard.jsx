@@ -312,7 +312,7 @@ export default function ResultCard({ result, onReset }) {
 
             {/* ── Watermark strip ── */}
             <div className="px-5 py-2.5 border-t border-gray-50 flex items-center justify-between">
-              <span className="text-[11px] text-gray-300 font-medium">hawkerai.sg</span>
+              <span className="text-[11px] text-gray-300 font-medium">hawkerai-eight.vercel.app</span>
               <span className="text-[11px] text-gray-300 font-semibold tracking-tight">
                 🍜 HawkerAI
               </span>
