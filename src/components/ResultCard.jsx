@@ -351,7 +351,9 @@ export default function ResultCard({ result, onReset }) {
       </form>
 
       {/* ── Share + Reset ── */}
-      {!isUnidentified && <ShareCard targetRef={cardRef} dishName={displayName} />}
+      {!isUnidentified && (
+        <ShareCard targetRef={cardRef} dishName={displayName} nutrition={nutrition} />
+      )}
 
       <button
         onClick={onReset}

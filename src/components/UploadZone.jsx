@@ -12,7 +12,7 @@ export default function UploadZone({ onLoading, onResult }) {
   const cameraRef = useRef(null)
   const galleryRef = useRef(null)
 
-  const handleFile = useCallback((file) => {
+  const handleFile = useCallback(async (file) => {
     if (!file) return
     if (!file.type.startsWith('image/')) {
       setInputError('Please choose an image file.')
@@ -21,7 +21,16 @@ export default function UploadZone({ onLoading, onResult }) {
     setInputError(null)
     // Revoke previous object URL to avoid memory leak
     if (preview?.url) URL.revokeObjectURL(preview.url)
-    setPreview({ file, url: URL.createObjectURL(file) })
+    // Blob URL: fast display in the preview <img>
+    const blobUrl = URL.createObjectURL(file)
+    // Data URL: required for html2canvas (blob URLs can't be serialised to canvas)
+    const dataUrl = await new Promise((resolve, reject) => {
+      const reader = new FileReader()
+      reader.onload  = () => resolve(reader.result)
+      reader.onerror = () => reject(reader.error)
+      reader.readAsDataURL(file)
+    })
+    setPreview({ file, url: blobUrl, dataUrl })
   }, [preview])
 
   const handleAnalyse = async () => {
@@ -41,7 +50,7 @@ export default function UploadZone({ onLoading, onResult }) {
 
       // Rate limited
       if (aiData.rateLimited) {
-        onResult({ rateLimited: true, resetAt: aiData.resetAt, imageUrl: preview.url })
+        onResult({ rateLimited: true, resetAt: aiData.resetAt, imageUrl: preview.dataUrl })
         return
       }
 
@@ -53,7 +62,7 @@ export default function UploadZone({ onLoading, onResult }) {
         ai: aiData,
         nutrition: matched?.dish ?? null,
         matchConfidence: matched?.confidence ?? aiData.confidence ?? 0,
-        imageUrl: preview.url,
+        imageUrl: preview.dataUrl,   // data URL so html2canvas can render it
       })
     } catch (err) {
       // Give a friendly message for network failures
@@ -64,7 +73,7 @@ export default function UploadZone({ onLoading, onResult }) {
         err.message?.toLowerCase().includes('failed to fetch')
           ? 'Something went wrong. Check your connection and try again.'
           : err.message
-      onResult({ error: msg, imageUrl: preview.url })
+      onResult({ error: msg, imageUrl: preview.dataUrl })
     }
   }
 
