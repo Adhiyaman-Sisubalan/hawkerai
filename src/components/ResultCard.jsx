@@ -352,7 +352,11 @@ export default function ResultCard({ result, onReset }) {
 
       {/* ── Share + Reset ── */}
       {!isUnidentified && (
-        <ShareCard targetRef={cardRef} dishName={displayName} nutrition={nutrition} />
+        <ShareCard
+          dishName={displayName}
+          nutrition={nutrition}
+          imageDataUrl={imageUrl}
+        />
       )}
 
       <button
